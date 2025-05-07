@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  lint:
+    <<: &image-ruby
+      docker:
+        - image: cimg/ruby:3.3.6
+    steps:
+      - checkout
+      - run: gem install standard
+  security_check:
+    <<: *image-ruby
+    steps:
+      - checkout
+      - run: gem install brakeman
+
+workflows:
+  pipeline:
+    jobs:
+      - lint
+      - security_check
