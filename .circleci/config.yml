@@ -15,7 +15,7 @@ jobs:
       - run: gem install standard
   lint3:
     docker:
-      - image: cimg/ruby:3.3.6
+      - image: cimg/ruby:3.4.3
     steps:
       - checkout
       - run: gem install standard
