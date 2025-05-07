@@ -8,14 +8,21 @@ jobs:
     steps:
       - checkout
       - run: gem install standard
-  security_check:
+  lint2:
     <<: *image-ruby
     steps:
       - checkout
-      - run: gem install brakeman
+      - run: gem install standard
+  lint3:
+    docker:
+      - image: cimg/ruby:3.3.6
+    steps:
+      - checkout
+      - run: gem install standard
 
 workflows:
   pipeline:
     jobs:
       - lint
-      - security_check
+      - lint2
+      - lint3
